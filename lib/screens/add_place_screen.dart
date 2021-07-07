@@ -30,15 +30,11 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                 children: <Widget>[
                   Form(
                     key: _form,
-                    child: ListView(
-                      children: <Widget>[
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: ('Enter here'),
-                          ),
-                          textInputAction: TextInputAction.next,
-                        ),
-                      ],
+                    child: TextField(
+                      decoration: InputDecoration(
+                        labelText: ('Enter here'),
+                      ),
+                      textInputAction: TextInputAction.next,
                     ),
                   ),
                   SizedBox(
