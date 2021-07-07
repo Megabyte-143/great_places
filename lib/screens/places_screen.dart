@@ -9,6 +9,7 @@ class PlacesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Great Places'),
         actions: <Widget>[
           IconButton(
             onPressed: () {

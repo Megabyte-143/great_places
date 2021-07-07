@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:great_places/providers/places_provider.dart';
 import 'package:provider/provider.dart';
+
+import './providers/places_provider.dart';
 
 import './screens/places_screen.dart';
 import './screens/add_place_screen.dart';
