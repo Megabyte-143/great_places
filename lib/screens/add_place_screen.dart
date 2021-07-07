@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/image.dart';
+import '../widgets/image_input.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   const AddPlaceScreen({Key? key}) : super(key: key);
