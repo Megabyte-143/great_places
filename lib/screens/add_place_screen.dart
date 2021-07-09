@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/image_input.dart';
+
+import '../providers/places_provider.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   const AddPlaceScreen({Key? key}) : super(key: key);
@@ -12,7 +17,21 @@ class AddPlaceScreen extends StatefulWidget {
 }
 
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
-  final _form = GlobalKey<FormState>();
+  final _textController = TextEditingController();
+  File _pickedImage = File('');
+
+  void _selectImage(File pickedImage) {
+    _pickedImage = pickedImage;
+  }
+
+  void _savePlace() {
+    if (_textController.text.isEmpty || _pickedImage == File('')) {
+      return;
+    }
+    Provider.of<PlacesProvider>(context,listen:false)
+        .addPlace(_textController.text, _pickedImage);
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,25 +47,23 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: <Widget>[
-                  Form(
-                    key: _form,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: ('Enter here'),
-                      ),
-                      textInputAction: TextInputAction.next,
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: ('Enter here'),
                     ),
+                    textInputAction: TextInputAction.next,
+                    controller: _textController,
                   ),
                   SizedBox(
                     height: 10,
                   ),
-                  ImageInput(),
+                  ImageInput(_selectImage),
                 ],
               ),
             ),
           ),
           ElevatedButton.icon(
-            onPressed: null,
+            onPressed: _savePlace,
             icon: Icon(Icons.add),
             label: Text("Add Place"),
           )
